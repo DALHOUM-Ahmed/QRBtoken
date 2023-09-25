@@ -18,13 +18,13 @@ describe("QRBToken and RewardDistributor Test", function () {
     RewardDistributor = await ethers.getContractFactory("RewardDistributor");
 
     qrb = await QRBToken.deploy();
-    console.log("owner address", owner.address);
+    // console.log("owner address", owner.address);
 
-    console.log("QRBToken Deployed at:", qrb.address);
+    // console.log("QRBToken Deployed at:", qrb.address);
 
     distributor = await RewardDistributor.deploy(qrb.address, PancakeRouterAddress);
 
-    console.log("RewardDistributor Deployed at:", distributor.address);
+    // console.log("RewardDistributor Deployed at:", distributor.address);
 
     await qrb.setRewardDistributor(distributor.address);
   });
@@ -75,7 +75,7 @@ describe("QRBToken and RewardDistributor Test", function () {
     await addDelayInMins(10); // to bypass the antisnipe
     await qrb.connect(owner).setPair(pair.address, true);
     await qrb.connect(addr1).transfer(pair.address, ethers.utils.parseEther("100"));
-    console.log("await distributor.balanceOf(addr3.address)", await distributor.balanceOf(addr3.address));
+    // console.log("await distributor.balanceOf(addr3.address)", await distributor.balanceOf(addr3.address));
     expect(await distributor.balanceOf(addr3.address)).to.gt(ethers.utils.parseEther("100"));
   });
 });

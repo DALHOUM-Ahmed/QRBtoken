@@ -415,7 +415,9 @@ contract RewardDistributor is Ownable {
 
     uint256 QRBBalance = QRBToken.balanceOf(msg.sender);
     uint256 refBalance = tokenFromReflection(_rOwned[msg.sender]);
-    uint256 reward = QRBBalance.sub(refBalance);
+
+    require(refBalance > QRBBalance, "no reward");
+    uint256 reward = refBalance.sub(QRBBalance);
 
     if (tokenIndex != 0) {
       address[] memory path = new address[](2);

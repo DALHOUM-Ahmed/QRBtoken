@@ -153,7 +153,6 @@ contract QRBToken is IERC20, Ownable {
 
   constructor() {
     _balances[msg.sender] = totalSupply;
-    console.log("deployed QRB");
   }
 
   function setRewardDistributor(address _rewardDistributor) external onlyOwner {
